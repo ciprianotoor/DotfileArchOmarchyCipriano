@@ -125,3 +125,5 @@ alias gl="git log --oneline --graph --all"
 # =========================================
 # claves ssh
 alias cpssh="cat ~/.ssh/id_ed25519.pub"
+# alias syncdot
+alias syncdot='~/git/DotfileArchOmarchyCipriano/scripts/sync-dotfiles.sh'
