@@ -22,31 +22,46 @@ sync_dotfiles() {
 
     echo "Copiando configuraciones..."
 
+    # =========================
     # ZSH
+    # =========================
+
     cp "$HOME/.zshrc" "$REPO/home/"
+
+    mkdir -p "$REPO/.config/zsh"
 
     rsync -av --delete \
         "$HOME/.config/zsh/" \
-        "$REPO/config/zsh/"
+        "$REPO/.config/zsh/"
 
 
+    # =========================
     # Hyprland
+    # =========================
+
     if [ -d "$HOME/.config/hypr" ]; then
-        mkdir -p "$REPO/config/hypr"
+
+        mkdir -p "$REPO/.config/hypr"
 
         rsync -av --delete \
             "$HOME/.config/hypr/" \
-            "$REPO/config/hypr/"
+            "$REPO/.config/hypr/"
+
     fi
 
 
+    # =========================
     # Kitty
+    # =========================
+
     if [ -d "$HOME/.config/kitty" ]; then
-        mkdir -p "$REPO/config/kitty"
+
+        mkdir -p "$REPO/.config/kitty"
 
         rsync -av --delete \
             "$HOME/.config/kitty/" \
-            "$REPO/config/kitty/"
+            "$REPO/.config/kitty/"
+
     fi
 
 
@@ -77,11 +92,15 @@ sync_dotfiles() {
 
         echo ""
         echo "Sincronización completada."
+
     else
+
         echo "Commit cancelado."
+
     fi
 
     read -p "Presione ENTER para continuar..."
+
 }
 
 
