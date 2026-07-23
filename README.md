@@ -1,5 +1,6 @@
 # DotfileArchOmarchyCipriano
 Autor: Ciprian Javier Perez Garcia
+Fecha:
 Configuración personal de Arch Linux + Omarchy.
 
 Este repositorio contiene mis archivos de configuración, alias, scripts y ajustes personalizados para mi entorno de trabajo en Linux.
