@@ -7,7 +7,7 @@ export REPO_DOTFILES="DotfileArchOmarchyCipriano"
 export DIR_DOTFILES="$GIT_HOME/$REPO_DOTFILES"
 
 # =========================
-# ModoHacker Aliases
+# 
 # =========================
 
 # Navegación
@@ -34,9 +34,10 @@ alias gs="git status"
 alias gl="git log --oneline --graph --all"
 alias gp="git pull"
 # ==================================
-# ModoHacker - ZSH
+# 
 # ==================================
 alias aliases="nano ~/.config/zsh/aliasesrc"
+
 # Recargar configuración
 alias revote="source ~/.zshrc"
 alias rz="exec zsh"
@@ -127,3 +128,11 @@ alias gl="git log --oneline --graph --all"
 alias cpssh="cat ~/.ssh/id_ed25519.pub"
 # alias syncdot
 alias syncdot='~/git/DotfileArchOmarchyCipriano/scripts/sync-dotfiles.sh'
+# alias IA's
+alias asistente="codex"
+# Utilidades
+alias apagar="poweroff" 
+# Webcam
+alias CliCam='mpv av://v4l2:/dev/video0'
+# Microfono
+alias mic='~/.config/zsh/scripts/mic.sh'

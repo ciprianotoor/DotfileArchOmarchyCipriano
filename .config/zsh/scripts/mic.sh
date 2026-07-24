@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+SOURCE="alsa_input.pci-0000_00_1b.0.analog-stereo"
+
+echo "🎙️ Grabando micrófono..."
+
+pw-record \
+    --target="$SOURCE" \
+    ~/mic-test.wav\
+    
+mpv ~/mic-test.wav

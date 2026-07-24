@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+DEVICE="/dev/video0"
+
+if [[ ! -e "$DEVICE" ]]; then
+    notify-send "Webcam" "No se encontró la cámara"
+    exit 1
+fi
+
+mpv \
+    --profile=low-latency \
+    --untimed \
+    --no-audio \
+    "av://v4l2:$DEVICE" &
+
+sleep 1
+
+exit
