@@ -65,9 +65,9 @@ alias actualizar="sudo pacman -Syu"
 
 # Instalar paquetes
 alias instalar="sudo pacman -S"
-
+alias desintalar="sudo pacman -R "
 # Buscar paquetes
-alias search="pacman -Ss"
+alias buscarprogramas="pacman -Ss"
 
 # Información de paquete
 alias info="pacman -Si"
