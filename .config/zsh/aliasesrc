@@ -136,3 +136,5 @@ alias apagar="poweroff"
 alias CliCam='mpv av://v4l2:/dev/video0'
 # Microfono
 alias mic='~/.config/zsh/scripts/mic.sh'
+# neovim word
+alias wordvim='nvim +Goyo +Pencil'
