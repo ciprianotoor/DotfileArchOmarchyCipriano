@@ -21,69 +21,6 @@ if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
 fi
 
-# --- Estado de la sesión ---
-# Tiempo transcurrido desde que se abrió este ModoHacker.
-typeset -gi MR_SESSION_START=${EPOCHSECONDS:-0}
-typeset -g MR_CONTEXT_VALUE=''
-
-function mr_update_context() {
-  local elapsed=$(( EPOCHSECONDS - MR_SESSION_START ))
-  (( elapsed < 0 )) && elapsed=0
-  local hours=$(( elapsed / 3600 ))
-  local minutes=$(( (elapsed % 3600) / 60 ))
-  local age="${minutes}m"
-  (( hours > 0 )) && age="${hours}h ${minutes}m"
-  local user=${(%):-%n}
-  local host=${(%):-%m}
-  if [[ -n $MR_VPN_ADDR ]]; then
-    MR_CONTEXT_VALUE="VPN:$MR_VPN_ADDR ◷ $age"
-  else
-    MR_CONTEXT_VALUE="$user@$host ◷ $age"
-  fi
-}
-
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd mr_update_context
-mr_update_context
-
-function prompt_session_type() {
-  local label icon color
-  if [[ -n ${SSH_CONNECTION:-} || -n ${SSH_TTY:-} ]]; then
-    label='HACKER/SSH'
-    icon='⇄'
-    color='magenta'
-  elif [[ -n ${TMUX:-} ]]; then
-    label='HACKER/TMUX'
-    icon='▣'
-    color='cyan'
-  elif [[ -n ${WAYLAND_DISPLAY:-}${DISPLAY:-} ]]; then
-    label='HACKER/LOCAL'
-    icon='⌂'
-    color='red'
-  else
-    label='HACKER/TTY'
-    icon='▤'
-    color='red'
-  fi
-
-  (( EUID == 0 )) && label+=':ROOT'
-  p10k segment -f "$color" -i "$icon" -t "$label"
-}
-
-function prompt_session_age() {
-  local elapsed=$(( EPOCHSECONDS - MR_SESSION_START ))
-  (( elapsed < 0 )) && elapsed=0
-  local hours=$(( elapsed / 3600 ))
-  local minutes=$(( (elapsed % 3600) / 60 ))
-  local text
-  if (( hours > 0 )); then
-    text="${hours}h ${minutes}m"
-  else
-    text="${minutes}m"
-  fi
-  p10k segment -f magenta -i '◷' -t "$text"
-}
-
 # Conserva la función original, pero sin comerse todo el ancho de la terminal.
 function prompt_last_command() {
   local last_cmd=$(fc -ln -1 2>/dev/null)
@@ -96,16 +33,6 @@ function prompt_last_command() {
   [[ -n $MR_LAN_ADDR ]] && max_cmd=18
   (( ${#last_cmd} > max_cmd )) && last_cmd="${last_cmd[1,$((max_cmd - 3))]}…"
   p10k segment -f magenta -i '' -t "UC: $last_cmd }~>"
-}
-
-# Identidad persistente en la línea central; conserva la versión Proxmox si existe.
-function prompt_proxmox_version() {
-  local marker='<~{[*-*]Mr-Robot}'
-  if command -v pveversion >/dev/null 2>&1; then
-    local pvever=$(pveversion 2>/dev/null | head -n1)
-    [[ -n $pvever ]] && marker+=" | ${pvever%%-*}"
-  fi
-  p10k segment -f red -i '⌁' -t "$marker"
 }
 
 # Identificador visible de Mr. Robot en la línea superior derecha.
@@ -132,56 +59,6 @@ function prompt_mr_user() {
   [[ -n $uptime_text ]] || uptime_text='?'
 
   p10k segment -f cyan -i '' -t "%n@%m │  $uptime_text"
-}
-
-# P10k ya trae este segmento personalizado registrado; lo reutilizamos para
-# mostrar el tipo de sesión y el tiempo transcurrido sin perder la derecha.
-function prompt_example() {
-  local label icon color
-  if [[ -n ${SSH_CONNECTION:-} || -n ${SSH_TTY:-} ]]; then
-    label='HACKER/SSH'
-    icon='⇄'
-    color='magenta'
-  elif [[ -n ${TMUX:-} ]]; then
-    label='HACKER/TMUX'
-    icon='▣'
-    color='cyan'
-  elif [[ -n ${WAYLAND_DISPLAY:-}${DISPLAY:-} ]]; then
-    label='HACKER/LOCAL'
-    icon='⌂'
-    color='red'
-  else
-    label='HACKER/TTY'
-    icon='▤'
-    color='yellow'
-  fi
-  (( EUID == 0 )) && label+=':ROOT'
-
-  local elapsed=$(( EPOCHSECONDS - MR_SESSION_START ))
-  (( elapsed < 0 )) && elapsed=0
-  local hours=$(( elapsed / 3600 ))
-  local minutes=$(( (elapsed % 3600) / 60 ))
-  local age="${minutes}m"
-  (( hours > 0 )) && age="${hours}h ${minutes}m"
-
-  p10k segment -f "$color" -i "$icon" -t "$label ◷ $age"
-}
-
-# Red: se consultan bajo demanda y no ralentizan el prompt.
-function lanip() {
-  command ip -4 -o addr show scope global 2>/dev/null |
-    awk '$2 ~ /^(en|eth|wl|vmbr|br)/ {sub(/\/.*/, "", $4); print $2 ":" $4}'
-}
-
-function vpnip() {
-  local result
-  result=$(command ip -4 -o addr show scope global 2>/dev/null |
-    awk '$2 ~ /^(tailscale|wg|tun|gpd|zt)/ {sub(/\/.*/, "", $4); print $2 ":" $4}')
-  if [[ -n $result ]]; then
-    print -r -- "$result"
-  elif (( $+commands[tailscale] )); then
-    print -r -- "tailscale: $(command tailscale ip -4 2>/dev/null)"
-  fi
 }
 
 # Paquetes actualizables de Arch Linux.
@@ -248,8 +125,6 @@ typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n@%m'
 typeset -g POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
 typeset -g POWERLEVEL9K_CONTEXT_DEFAULT_CONTENT_EXPANSION='%n@%m'
 typeset -g POWERLEVEL9K_CONTEXT_SUDO_CONTENT_EXPANSION='%n@%m'
-typeset -g POWERLEVEL9K_CONTEXT_DEFAULT_CONTENT_EXPANSION='${MR_CONTEXT_VALUE}'
-typeset -g POWERLEVEL9K_CONTEXT_SUDO_CONTENT_EXPANSION='${MR_CONTEXT_VALUE}'
 typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=red
 typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=black
 typeset -g POWERLEVEL9K_CPU_ARCH_FOREGROUND=cyan

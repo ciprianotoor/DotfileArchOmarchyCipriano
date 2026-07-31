@@ -25,7 +25,7 @@ alias lt="lsd --tree"
 alias cat="bat --paging=never"
 
 # Sistema
-alias update="sudo pacman -Syu"
+alias pacman-update="sudo pacman -Syu"
 alias ports="ss -tulanp"
 alias ip="ip -c a"
 
@@ -132,6 +132,15 @@ alias syncdot='~/git/DotfileArchOmarchyCipriano/scripts/sync-dotfiles.sh'
 alias asistente="codex"
 # Utilidades
 alias apagar="poweroff" 
+
+# Scripts locales de mantenimiento
+alias sysinfo="$HOME/.config/zsh/scripts/system-info.sh"
+alias sysstatus="$HOME/.config/zsh/scripts/system-status.sh"
+alias security-audit="$HOME/.config/zsh/scripts/arch-security-audit.sh"
+alias disk-health="$HOME/.config/zsh/scripts/disk-health.sh"
+alias mount-media="$HOME/.config/zsh/scripts/mount-media.sh"
+alias tailscale-menu="$HOME/.config/zsh/scripts/tailscale-connect.sh"
+
 # Webcam
 alias CliCam='mpv av://v4l2:/dev/video0'
 # Microfono

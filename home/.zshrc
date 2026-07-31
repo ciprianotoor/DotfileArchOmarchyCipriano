@@ -22,6 +22,11 @@ source ~/.config/zsh/tools.zsh
 
 source ~/.config/zsh/aliasesrc
 
+# Make the optional hacker mode command available before the prompt loads.
+if [[ -f "$HOME/.config/shell/modes.sh" ]]; then
+  source "$HOME/.config/shell/modes.sh"
+fi
+
 # =========================
 # Historial ZSH
 # =========================
