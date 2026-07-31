@@ -174,11 +174,12 @@ function vpnip() {
 
 # Paquetes actualizables de Arch Linux.
 function prompt_arch_updates() {
-  (( $+commands[checkupdates] )) || return
-  local updates
-  updates=$(checkupdates 2>/dev/null | wc -l)
+  local updates=0
+  if (( $+commands[checkupdates] )); then
+    updates=$(checkupdates 2>/dev/null | wc -l)
+  fi
   updates=${updates//[[:space:]]/}
-  p10k segment -f yellow -i '󰏗' -t "$updates"
+  p10k segment -f yellow -i '' -t "󰏗 {$updates}"
 }
 
 
