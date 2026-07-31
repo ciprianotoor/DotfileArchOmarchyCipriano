@@ -95,8 +95,7 @@ function prompt_last_command() {
   local max_cmd=34
   [[ -n $MR_LAN_ADDR ]] && max_cmd=18
   (( ${#last_cmd} > max_cmd )) && last_cmd="${last_cmd[1,$((max_cmd - 3))]}…"
-  local lan_suffix="${MR_LAN_ADDR:+ LAN:$MR_LAN_ADDR}"
-  p10k segment -f magenta -i '↳' -t "UC: $last_cmd$lan_suffix"
+  p10k segment -f magenta -i '' -t "UC: $last_cmd"
 }
 
 # Identidad persistente en la línea central; conserva la versión Proxmox si existe.
@@ -107,6 +106,20 @@ function prompt_proxmox_version() {
     [[ -n $pvever ]] && marker+=" | ${pvever%%-*}"
   fi
   p10k segment -f red -i '⌁' -t "$marker"
+}
+
+# Identificador visible de Mr. Robot en la línea superior derecha.
+function prompt_mr_robot() {
+  local title='ModoHacker'
+  if (( EUID == 0 )) || [[ -n ${SUDO_USER:-} ]]; then
+    title='ModoHacker:SUDO'
+  fi
+  p10k segment -f red -i '' -t "$title"
+}
+
+# Usuario y equipo en la parte superior derecha.
+function prompt_mr_user() {
+  p10k segment -f cyan -i '' -t "%n@%m"
 }
 
 # P10k ya trae este segmento personalizado registrado; lo reutilizamos para
@@ -159,68 +172,38 @@ function vpnip() {
   fi
 }
 
+# Paquetes actualizables de Arch Linux.
+function prompt_arch_updates() {
+  (( $+commands[checkupdates] )) || return
+  local updates
+  updates=$(checkupdates 2>/dev/null | wc -l)
+  updates=${updates//[[:space:]]/}
+  p10k segment -f yellow -i '󰏗' -t "$updates"
+}
+
 
 # --- Prompt P10k: oscuro, rojo de alerta y blanco de terminal ---
 typeset -ga POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  mr_robot
   last_command
   newline
-  os_icon
-  cpu_arch
-  vcs
+  mr_user
   newline
   dir
   newline
   prompt_char
 )
 typeset -ga POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-  status
-  command_execution_time
-  background_jobs
-  context
+  vpn_ip
+  newline
+  ip
+  newline
   time
   newline
-  direnv
-  asdf
-  virtualenv
-  anaconda
-  pyenv
-  goenv
-  nodenv
-  nvm
-  nodeenv
-  rbenv
-  rvm
-  fvm
-  luaenv
-  jenv
-  plenv
-  perlbrew
-  phpenv
-  scalaenv
-  haskell_stack
-  kubecontext
-  terraform
-  aws
-  aws_eb_env
-  azure
-  gcloud
-  google_app_cred
-  toolbox
-  nordvpn
-  ranger
-  yazi
-  nnn
-  lf
-  xplr
-  vim_shell
-  midnight_commander
-  nix_shell
-  chezmoi_shell
-  vi_mode
-  todo
-  timewarrior
-  taskwarrior
-  per_directory_history
+  os_icon
+  arch_updates
+  cpu_arch
+  vcs
 )
 
 typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
@@ -290,7 +273,7 @@ typeset -g POWERLEVEL9K_RAM_FOREGROUND=cyan
 typeset -g POWERLEVEL9K_RAM_BACKGROUND=black
 typeset -g POWERLEVEL9K_TIME_FOREGROUND=cyan
 typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%I:%M %p}'
-typeset -g POWERLEVEL9K_TIME_PREFIX='%F{red}<~{[*-*]Mr-Robot}%f '
+typeset -g POWERLEVEL9K_TIME_PREFIX=''
 typeset -g POWERLEVEL9K_TIME_BACKGROUND=black
 
 # Red privada: VPN/Tailscale y LAN en líneas separadas para no esconder la
