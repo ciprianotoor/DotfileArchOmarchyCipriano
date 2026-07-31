@@ -95,7 +95,7 @@ function prompt_last_command() {
   local max_cmd=34
   [[ -n $MR_LAN_ADDR ]] && max_cmd=18
   (( ${#last_cmd} > max_cmd )) && last_cmd="${last_cmd[1,$((max_cmd - 3))]}…"
-  p10k segment -f magenta -i '' -t "UC: $last_cmd"
+  p10k segment -f magenta -i '' -t "UC: $last_cmd }~>"
 }
 
 # Identidad persistente en la línea central; conserva la versión Proxmox si existe.
@@ -119,7 +119,19 @@ function prompt_mr_robot() {
 
 # Usuario y equipo en la parte superior derecha.
 function prompt_mr_user() {
-  p10k segment -f cyan -i '' -t "%n@%m"
+  local uptime_text
+  uptime_text=$(LC_ALL=C uptime -p 2>/dev/null)
+  uptime_text=${uptime_text#up }
+  uptime_text=${uptime_text// days/d}
+  uptime_text=${uptime_text// day/d}
+  uptime_text=${uptime_text// hours/h}
+  uptime_text=${uptime_text// hour/h}
+  uptime_text=${uptime_text// minutes/m}
+  uptime_text=${uptime_text// minute/m}
+  uptime_text=${uptime_text//, / }
+  [[ -n $uptime_text ]] || uptime_text='?'
+
+  p10k segment -f cyan -i '' -t "%n@%m │  $uptime_text"
 }
 
 # P10k ya trae este segmento personalizado registrado; lo reutilizamos para
@@ -191,6 +203,10 @@ typeset -ga POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   mr_user
   newline
   dir
+  battery
+  load
+  ram
+  disk_usage
   newline
   prompt_char
 )
@@ -212,17 +228,17 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=false
 typeset -g POWERLEVEL9K_BACKGROUND=black
 typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
-typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
 typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
 typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL='%F{red}%f'
+typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
 typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
 typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
 typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%F{grey}│%f'
 typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{grey}│%f'
 
 # Marco visual tipo consola de Elliot.
-typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{red}╭─%f'
-typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{grey}├─%f'
+typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{red}╭─{%f'
+typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{grey}├─%f'
 typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{red}╰─%f'
 typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX='%F{grey}─╮%f'
 typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX='%F{grey}─┤%f'
@@ -276,6 +292,7 @@ typeset -g POWERLEVEL9K_TIME_FOREGROUND=cyan
 typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%I:%M %p}'
 typeset -g POWERLEVEL9K_TIME_PREFIX=''
 typeset -g POWERLEVEL9K_TIME_BACKGROUND=black
+typeset -g POWERLEVEL9K_DISK_USAGE_CONTENT_EXPANSION='${P9K_CONTENT}'
 
 # Red privada: VPN/Tailscale y LAN en líneas separadas para no esconder la
 # información cuando el prompt derecho está lleno.
