@@ -57,3 +57,33 @@ source ~/.config/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme
 # =========================
 
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# --- Omarchy-style zsh additions (added by Copilot) ---
+# Use Starship prompt if available
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+# Provide common completions
+if autoload -Uz compinit 2>/dev/null; then
+  autoload -Uz compinit
+  compinit -u
+fi
+
+# Add user-local bin to PATH
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Useful aliases (Omarchy-friendly)
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias update='omarchy update'
+alias restart-term='omarchy restart terminal'
+
+# Source user omarchy envs if present
+if [ -f "$HOME/.config/omarchy/envs" ]; then
+  source "$HOME/.config/omarchy/envs"
+fi
+# --- End Omarchy-style zsh additions ---
