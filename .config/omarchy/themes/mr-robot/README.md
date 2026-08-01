@@ -5,7 +5,16 @@ negro profundo, blanco de fósforo y rojo de alerta. Está creado desde cero
 para Omarchy e incluye fondos originales y fondos seleccionados para uso
 personal.
 
-## Instalación desde este repositorio
+## Instalación directa
+
+Este tema tiene un repositorio independiente y puede instalarse con:
+
+```bash
+omarchy theme install \
+  https://github.com/ciprianotoor/omarchy-mr-robot-theme.git
+```
+
+## Instalación desde el repositorio de dotfiles
 
 ```bash
 git clone https://github.com/ciprianotoor/DotfileArchOmarchyCipriano.git
