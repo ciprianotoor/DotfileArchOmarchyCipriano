@@ -36,6 +36,10 @@ omarchy theme set mr-robot
 Para desarrollo local, el enlace puede existir sin activar el tema. Este
 repositorio no ejecuta comandos de aplicación automáticamente.
 
+El alias `temasync` pertenece al repositorio principal de dotfiles, no a este
+tema. Si instalaste solo el tema, ese alias no se crea automáticamente.
+Consulta el README principal para instalar el menú de sincronización.
+
 Para cambiar entre los fondos incluidos:
 
 ```bash

@@ -118,6 +118,19 @@ el tema y publicar cambios. La opción `6` copia el tema independiente hacia
 y conserva `backgrounds/downloaded/`. Después de esa copia, usa la opción `7`
 para publicar los cambios.
 
+El script está en
+`.config/zsh/scripts/omarchy-theme-sync.sh` y el alias en
+`.config/zsh/aliasesrc`. Si el alias no aparece después de clonar o actualizar
+los dotfiles, recarga Zsh:
+
+```bash
+source ~/.zshrc
+temasync
+```
+
+La instalación directa del tema no instala este script ni el alias; para usar
+el menú debes tener también este repositorio de dotfiles.
+
 El repositorio independiente del tema y este repositorio son dos repositorios
 Git distintos; no se sincronizan solos. La fuente elegida por la opción `6`
 es el repositorio independiente. El menú no hace `reset --hard`, no fuerza
