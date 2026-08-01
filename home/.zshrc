@@ -70,6 +70,7 @@ alias vyc='$HOME/.local/bin/vyc'
 
 # Menú de control de la Dell OptiPlex 9020 SFF
 alias Dell-O-9020-ssf='$HOME/.local/bin/dell-o-9020-ssf'
+alias rdp-w11='$HOME/.local/bin/rdp-w11'
 
 # Source user omarchy envs if present
 if [ -f "$HOME/.config/omarchy/envs" ]; then
