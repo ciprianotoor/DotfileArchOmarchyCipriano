@@ -15,6 +15,7 @@ else
   ui_title() { printf '\n== %s ==\n\n' "$1"; }
   ui_success() { printf '[OK] %s\n' "$1"; }
   ui_warning() { printf '[!] %s\n' "$1"; }
+  ui_info() { printf '[INFO] %s\n' "$1"; }
   ui_error() { printf '[ERROR] %s\n' "$1" >&2; }
   ui_pause() { read -r -p 'ENTER para continuar'; }
   ui_menu_option() { printf '%s) %s\n' "$1" "$2"; }
