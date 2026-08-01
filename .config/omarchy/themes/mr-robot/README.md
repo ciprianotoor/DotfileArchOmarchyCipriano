@@ -2,7 +2,8 @@
 
 Tema oscuro de alto contraste con tono de terminal, vigilancia y glitch:
 negro profundo, blanco de fósforo y rojo de alerta. Está creado desde cero
-para Omarchy y no incluye imágenes de terceros.
+para Omarchy e incluye fondos originales y fondos seleccionados para uso
+personal.
 
 ## Instalación desde este repositorio
 
@@ -23,7 +24,7 @@ repositorio no ejecuta comandos de aplicación automáticamente.
 - Rojo `#F2293A` para alertas, bordes y estados críticos.
 - Blanco fósforo `#E7E9E7` para lectura prolongada.
 - Gris CRT y líneas de interferencia para la sensación de monitor antiguo.
-- Fondos SVG originales incluidos en `backgrounds/`.
+- Fondos SVG y JPG incluidos directamente en `backgrounds/`.
 
 `preview.png` es la miniatura del tema. `backgrounds/mr-robot-ascii.png` es
 el fondo ASCII rojo/negro que Omarchy puede incluir al usar `theme bg next`.
