@@ -25,6 +25,9 @@ repositorio no ejecuta comandos de aplicación automáticamente.
 - Gris CRT y líneas de interferencia para la sensación de monitor antiguo.
 - Fondos SVG originales incluidos en `backgrounds/`.
 
+`preview.png` es la miniatura del tema. `backgrounds/mr-robot-ascii.png` es
+el fondo ASCII rojo/negro que Omarchy puede incluir al usar `theme bg next`.
+
 ## Licencia
 
 MIT. Los fondos SVG y configuraciones de este tema son originales.
