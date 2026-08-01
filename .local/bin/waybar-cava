@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -u
+
+readonly CAVA_CONFIG="$HOME/.config/waybar/cava-waybar.conf"
+readonly BARS=(" " "▂" "▃" "▄" "▅" "▆" "▇" "█" "█")
+
+playing_tooltip='Cava'
+metadata_second=0
+
+update_playing_tooltip() {
+    local status='' artist='' album='' title='' metadata=''
+
+    if command -v cmus-remote >/dev/null 2>&1; then
+        while IFS= read -r line; do
+            local key=${line%% *}
+            local value=${line#* }
+            case "$key" in
+                status) status=$value ;;
+                artist) artist=$value ;;
+                album) album=$value ;;
+                title) title=$value ;;
+            esac
+        done < <(cmus-remote -Q 2>/dev/null || true)
+
+        if [[ -n "$title" && "$status" != stopped ]]; then
+            metadata="$title"
+            [[ -n "$artist" ]] && metadata="$artist — $metadata"
+            [[ -n "$album" ]] && metadata+=$'\n'"$album"
+            [[ "$status" == paused ]] && metadata="⏸ $metadata" || metadata="♫ $metadata"
+        fi
+    fi
+
+    if [[ -z "$metadata" ]] && command -v playerctl >/dev/null 2>&1; then
+        local player_status player_artist player_title player_album
+        player_status=$(playerctl status 2>/dev/null || true)
+        player_artist=$(playerctl metadata artist 2>/dev/null || true)
+        player_title=$(playerctl metadata title 2>/dev/null || true)
+        player_album=$(playerctl metadata album 2>/dev/null || true)
+        if [[ -n "$player_title" ]]; then
+            metadata="$player_title"
+            [[ -n "$player_artist" ]] && metadata="$player_artist — $metadata"
+            [[ -n "$player_album" ]] && metadata+=$'\n'"$player_album"
+            [[ "$player_status" == Paused ]] && metadata="⏸ $metadata" || metadata="♫ $metadata"
+        fi
+    fi
+
+    [[ -n "$metadata" ]] && playing_tooltip="$metadata" || playing_tooltip='Cava — sin reproducción'
+}
+
+while IFS= read -r line; do
+    current_second=$(date +%s)
+    if (( current_second != metadata_second )); then
+        metadata_second=$current_second
+        update_playing_tooltip
+    fi
+
+    text=''
+    IFS=';' read -r -a levels <<< "$line"
+    for level in "${levels[@]}"; do
+        [[ $level =~ ^[0-8]$ ]] || continue
+        text+=${BARS[level]}
+    done
+
+    [[ -n $text ]] && jq -cn --arg text "$text" --arg tooltip "$playing_tooltip" \
+        '{text: $text, tooltip: $tooltip}'
+done < <(exec cava -p "$CAVA_CONFIG")

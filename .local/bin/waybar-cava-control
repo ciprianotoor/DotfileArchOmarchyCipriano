@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+case "${1:-}" in
+    toggle)
+        cmus-remote -u 2>/dev/null || playerctl play-pause 2>/dev/null
+        ;;
+    next)
+        cmus-remote -n 2>/dev/null || playerctl next 2>/dev/null
+        ;;
+    previous)
+        cmus-remote -r 2>/dev/null || playerctl previous 2>/dev/null
+        ;;
+esac
