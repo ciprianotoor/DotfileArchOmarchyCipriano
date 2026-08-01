@@ -1,0 +1,6 @@
+/* Keep this file variable-only: Omarchy's base style supplies the selectors. */
+@define-color background #08090B;
+@define-color foreground #E7E9E7;
+@define-color accent #F2293A;
+@define-color critical #FF4B5C;
+@define-color muted #858B8F;
