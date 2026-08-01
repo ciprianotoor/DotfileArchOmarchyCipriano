@@ -73,6 +73,30 @@ La documentación específica del tema está en
 El repositorio independiente del tema está disponible en
 <https://github.com/ciprianotoor/omarchy-mr-robot-theme>.
 
+### Sincronizar el tema y los repositorios
+
+El menú `temasync` actualiza o publica el repositorio de dotfiles y el
+repositorio independiente del tema:
+
+```bash
+source ~/.zshrc
+temasync
+```
+
+El menú permite ver estados, actualizar uno o ambos repositorios, reaplicar
+el tema y publicar cambios. La opción `6` copia el tema independiente hacia
+`.config/omarchy/themes/mr-robot` del repositorio de dotfiles; pide confirmación
+y conserva `backgrounds/downloaded/`. Después de esa copia, usa la opción `7`
+para publicar los cambios.
+
+Puedes cambiar las rutas si tus repositorios están en otra ubicación:
+
+```bash
+DIR_DOTFILES="$HOME/git/DotfileArchOmarchyCipriano" \
+DIR_MR_ROBOT_THEME="$HOME/git/omarchy-mr-robot-theme" \
+  temasync
+```
+
 ## Preguntas frecuentes y limitaciones
 
 ### ¿Qué instala este repositorio?

@@ -128,6 +128,7 @@ alias gl="git log --oneline --graph --all"
 alias cpssh="cat ~/.ssh/id_ed25519.pub"
 # alias syncdot
 alias syncdot='~/git/DotfileArchOmarchyCipriano/scripts/sync-dotfiles.sh'
+alias temasync='$HOME/.config/zsh/scripts/omarchy-theme-sync.sh'
 # alias IA's
 alias asistente="codex"
 # Utilidades
