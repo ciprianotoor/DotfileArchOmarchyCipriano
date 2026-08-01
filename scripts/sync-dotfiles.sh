@@ -69,6 +69,54 @@ sync_dotfiles() {
     fi
 
 
+    # =========================
+    # Waybar
+    # =========================
+
+    if [ -d "$HOME/.config/waybar" ]; then
+
+        mkdir -p "$REPO/.config/waybar"
+
+        rsync -av --delete \
+            "$HOME/.config/waybar/" \
+            "$REPO/.config/waybar/"
+
+    fi
+
+
+    # =========================
+    # Cmus
+    # =========================
+
+    if [ -d "$HOME/.config/cmus" ]; then
+
+        mkdir -p "$REPO/.config/cmus"
+
+        rsync -av \
+            --include='rc' \
+            --include='*.theme' \
+            --exclude='*' \
+            "$HOME/.config/cmus/" \
+            "$REPO/.config/cmus/"
+
+    fi
+
+
+    # =========================
+    # Hooks de Omarchy
+    # =========================
+
+    if [ -d "$HOME/.config/omarchy/hooks/theme-set.d" ]; then
+
+        mkdir -p "$REPO/.config/omarchy/hooks/theme-set.d"
+
+        rsync -av \
+            "$HOME/.config/omarchy/hooks/theme-set.d/cmus" \
+            "$REPO/.config/omarchy/hooks/theme-set.d/"
+
+    fi
+
+
     echo ""
     echo "Cambios detectados:"
     echo "--------------------------------------"

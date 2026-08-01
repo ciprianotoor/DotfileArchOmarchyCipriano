@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Re-apply cmus colors after Omarchy changes the terminal palette.
+cmus-remote -C 'colorscheme omarchy' >/dev/null 2>&1 || true

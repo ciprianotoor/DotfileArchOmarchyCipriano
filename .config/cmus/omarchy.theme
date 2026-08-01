@@ -1,0 +1,47 @@
+### Omarchy adaptive theme
+### Uses the terminal's current 16-color palette, so it follows Omarchy themes.
+
+set color_cmdline_bg=default
+set color_cmdline_fg=white
+set color_cmdline_attr=bold
+set color_error=lightred
+set color_info=lightyellow
+set color_separator=lightred
+
+set color_statusline_bg=default
+set color_statusline_fg=white
+set color_statusline_attr=bold
+set color_statusline_progress_bg=red
+set color_statusline_progress_fg=white
+set color_statusline_progress_attr=bold
+
+set color_titleline_bg=red
+set color_titleline_fg=white
+set color_titleline_attr=bold
+
+set color_win_bg=default
+set color_win_fg=white
+set color_win_attr=default
+set color_win_cur=lightred
+set color_win_cur_attr=bold
+set color_win_dir=lightcyan
+set color_win_sel_bg=red
+set color_win_sel_fg=white
+set color_win_sel_attr=bold
+set color_win_cur_sel_bg=lightred
+set color_win_cur_sel_fg=black
+set color_win_cur_sel_attr=bold
+set color_win_title_bg=default
+set color_win_title_fg=lightred
+set color_win_title_attr=bold
+
+set color_win_inactive_sel_bg=darkgray
+set color_win_inactive_sel_fg=white
+set color_win_inactive_sel_attr=default
+set color_win_inactive_cur_sel_bg=gray
+set color_win_inactive_cur_sel_fg=black
+set color_win_inactive_cur_sel_attr=bold
+
+set color_trackwin_album_bg=default
+set color_trackwin_album_fg=lightcyan
+set color_trackwin_album_attr=bold
