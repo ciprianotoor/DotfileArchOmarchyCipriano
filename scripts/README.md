@@ -8,4 +8,5 @@
 - `snapper-menu.sh`: crea, lista o elimina instantáneas Snapper manuales.
 - `tailscale-connect.sh`: consulta, conecta o desconecta Tailscale sin ajustes de Proxmox.
 - `backup-dotfiles.sh`: crea un respaldo fechado de las configuraciones principales.
+- `alias-help.sh`: lista y busca aliases definidos en `aliasesrc`.
 - `install-dotfiles.sh` y `sync-dotfiles.sh`: instalación y sincronización del repositorio.

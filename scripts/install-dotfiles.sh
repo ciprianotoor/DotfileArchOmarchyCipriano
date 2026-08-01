@@ -43,6 +43,11 @@ echo "Instalando .zshrc..."
 
 cp "$REPO/home/.zshrc" "$HOME/.zshrc"
 
+# Restaurar Nano
+if [ -f "$REPO/home/.nanorc" ]; then
+    cp "$REPO/home/.nanorc" "$HOME/.nanorc"
+fi
+
 
 # Restaurar .config
 

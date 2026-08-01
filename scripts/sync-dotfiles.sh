@@ -28,6 +28,10 @@ sync_dotfiles() {
 
     cp "$HOME/.zshrc" "$REPO/home/"
 
+    if [ -f "$HOME/.nanorc" ]; then
+        cp "$HOME/.nanorc" "$REPO/home/"
+    fi
+
     mkdir -p "$REPO/.config/zsh"
 
     rsync -av --delete \

@@ -1,0 +1,89 @@
+# ==========================================
+# Nano Hacker Theme - Omarchy Style
+# ==========================================
+
+# Mostrar números de línea
+set linenumbers
+
+# Cursor visible
+set constantshow
+
+# Mostrar posición del cursor
+set positionlog
+
+# Barra inferior moderna
+set minibar
+set indicator
+set stateflags
+set historylog
+set magic
+set wordbounds
+set zap
+
+# Respaldos automáticos de Nano fuera del repositorio
+set backup
+set backupdir "~/.local/state/nano/backups"
+
+# No usar pantalla de ayuda inferior
+set nohelp
+
+
+# Ajuste automático de línea
+set softwrap
+set atblanks
+
+# Indentación automática
+set autoindent
+
+# Tabulación estilo código
+set tabsize 4
+set tabstospaces
+
+# Ratón en terminal
+set mouse
+
+
+# ==========================================
+# Colores hacker
+# ==========================================
+
+# Texto principal
+set titlecolor brightgreen,black
+
+# Barra de título
+set statuscolor brightgreen,black
+
+# Número de línea
+set numbercolor green,black
+
+# Cursor
+set selectedcolor brightblack,green
+
+# Errores
+set errorcolor brightred,black
+set minicolor brightgreen,black
+set keycolor brightgreen,black
+set promptcolor brightgreen,black
+set scrollercolor brightgreen,black
+set stripecolor brightblack,black
+set spotlightcolor black,brightgreen
+
+# Guía para código y archivos de configuración
+set guidestripe 100
+
+
+# ==========================================
+# Sintaxis
+# ==========================================
+
+include "/usr/share/nano/*.nanorc"
+
+
+# ==========================================
+# Atajos útiles
+# ==========================================
+
+bind ^S writeout main
+bind ^Q exit main
+bind ^F whereis main
+bind ^G gotoline main

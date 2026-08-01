@@ -24,6 +24,7 @@ backup_dir() {
 echo "Creando respaldo en: $BACKUP_DIR"
 backup_file '.zshrc'
 backup_file '.p10k.zsh'
+backup_file '.nanorc'
 backup_dir '.config/zsh'
 backup_dir '.config/hypr'
 backup_dir '.config/kitty'

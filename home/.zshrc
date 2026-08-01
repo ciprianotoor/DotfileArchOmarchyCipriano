@@ -65,6 +65,12 @@ fi
 alias update='omarchy update'
 alias restart-term='omarchy restart terminal'
 
+# YouTube en mpv: acepta una URL o texto para buscar
+alias vyc='$HOME/.local/bin/vyc'
+
+# Menú de control de la Dell OptiPlex 9020 SFF
+alias Dell-O-9020-ssf='$HOME/.local/bin/dell-o-9020-ssf'
+
 # Source user omarchy envs if present
 if [ -f "$HOME/.config/omarchy/envs" ]; then
   source "$HOME/.config/omarchy/envs"
