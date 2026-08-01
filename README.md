@@ -102,6 +102,22 @@ La documentación específica del tema está en
 El repositorio independiente del tema está disponible en
 <https://github.com/ciprianotoor/omarchy-mr-robot-theme>.
 
+### Requisitos del tema
+
+El tema requiere Omarchy funcionando sobre Arch Linux, Hyprland, Git y
+permisos de usuario sobre `~/.config/omarchy/themes/`. No requiere root. Puede
+configurar Hyprland, Hyprlock, Kitty, Alacritty, Foot, Ghostty, Waybar,
+Walker, Mako, GTK, SwayOSD, btop, Cava, Chromium, VS Code y Neovim cuando
+esas aplicaciones estén instaladas. No instala dichas aplicaciones ni fuentes;
+si falta alguna, solo se omite esa parte del tema.
+
+Después de instalarlo, puedes aplicarlo con:
+
+```bash
+omarchy theme set mr-robot
+omarchy theme refresh
+```
+
 ### Sincronizar el tema y los repositorios
 
 El menú `temasync` actualiza o publica el repositorio de dotfiles y el

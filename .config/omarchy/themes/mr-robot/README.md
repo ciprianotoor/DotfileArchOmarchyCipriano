@@ -9,6 +9,17 @@ y recursos de terceros cuya licencia debe revisarse por separado.
 > instala Arch Linux, Omarchy, aplicaciones, fuentes ni el repositorio completo
 > de dotfiles. Haz una copia de seguridad antes de cambiar tu tema.
 
+## Requisitos técnicos
+
+Necesitas Omarchy funcionando sobre Arch Linux, Hyprland, Git y permisos de
+usuario sobre `~/.config/omarchy/themes/`. No requiere permisos de root.
+
+Puede configurar, cuando estén instalados, Hyprland, Hyprlock, Kitty,
+Alacritty, Foot, Ghostty, Waybar, Walker, Mako, GTK, SwayOSD, btop, Cava,
+Chromium, VS Code y Neovim. Si una aplicación no está instalada, simplemente
+no se aplica esa parte del tema. `mako.ini` usa `JetBrainsMono Nerd Font`; sin
+esa fuente se usará una alternativa.
+
 ## Instalación directa
 
 Este tema tiene un repositorio independiente y puede instalarse con:
@@ -22,6 +33,16 @@ Omarchy clonará el repositorio independiente en
 `~/.config/omarchy/themes/mr-robot`. No combines esta instalación con el
 enlace simbólico de los dotfiles usando el mismo nombre: elige un método para
 evitar confusiones sobre qué copia está activa.
+
+Si tu versión de Omarchy no lo activa automáticamente, ejecuta:
+
+```bash
+omarchy theme set mr-robot
+omarchy theme refresh
+```
+
+El tema no instala aplicaciones, fuentes ni dependencias, y no modifica
+`~/.local/share/omarchy/`, que es una ruta administrada por Omarchy.
 
 ## Instalación desde el repositorio de dotfiles
 
