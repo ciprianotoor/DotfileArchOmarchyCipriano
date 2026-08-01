@@ -2,3 +2,12 @@
 
 # Re-apply cmus colors after Omarchy changes the terminal palette.
 cmus-remote -C 'colorscheme omarchy' >/dev/null 2>&1 || true
+
+# Keep Cava aligned with the active Omarchy palette.
+CAVA_THEME_SOURCE="$HOME/.config/omarchy/current/theme/cava_theme"
+CAVA_THEME_TARGET="$HOME/.config/cava/themes/omarchy"
+if [[ -f "$CAVA_THEME_SOURCE" ]]; then
+  mkdir -p "$HOME/.config/cava/themes"
+  cp "$CAVA_THEME_SOURCE" "$CAVA_THEME_TARGET"
+  pkill -USR2 -x cava >/dev/null 2>&1 || true
+fi

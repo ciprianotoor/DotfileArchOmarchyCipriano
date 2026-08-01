@@ -103,6 +103,25 @@ sync_dotfiles() {
 
 
     # =========================
+    # Cava
+    # =========================
+
+    if [ -d "$HOME/.config/cava" ]; then
+
+        mkdir -p "$REPO/.config/cava/themes"
+
+        rsync -av \
+            "$HOME/.config/cava/config" \
+            "$REPO/.config/cava/"
+
+        rsync -av \
+            "$HOME/.config/cava/themes/omarchy" \
+            "$REPO/.config/cava/themes/"
+
+    fi
+
+
+    # =========================
     # Hooks de Omarchy
     # =========================
 
