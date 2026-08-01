@@ -7,7 +7,10 @@ VS Code y tres fondos SVG originales.
 ## Instalación
 
 ```bash
-omarchy theme install https://github.com/ciprianotoor/DotfileArchOmarchyCipriano.git
+git clone https://github.com/ciprianotoor/DotfileArchOmarchyCipriano.git
+cd DotfileArchOmarchyCipriano
+ln -sfn "$PWD/.config/omarchy/themes/crimsonvoid" \
+  "$HOME/.config/omarchy/themes/crimsonvoid"
 omarchy theme set crimsonvoid
 ```
 
