@@ -31,4 +31,16 @@ el fondo ASCII rojo/negro que Omarchy puede incluir al usar `theme bg next`.
 
 ## Licencia
 
-MIT. Los fondos SVG y configuraciones de este tema son originales.
+Las configuraciones, documentación y fondos creados localmente por el autor
+se distribuyen bajo la licencia MIT del repositorio raíz. La MIT no cubre los
+JPG de terceros, frases, personajes, marcas ni logotipos relacionados con
+Mr. Robot. Consulta [`SOURCES.txt`](backgrounds/SOURCES.txt) y verifica las
+condiciones de cada fuente antes de redistribuir o usar comercialmente esos
+fondos.
+
+Este tema no está afiliado, patrocinado ni aprobado por Omarchy, Arch Linux,
+los titulares de derechos de Mr. Robot ni los autores de los recursos
+externos.
+
+El tema se proporciona “tal cual”. Haz copias de seguridad antes de enlazarlo
+y adapta las rutas o comandos si tu instalación de Omarchy difiere.
