@@ -140,6 +140,7 @@ alias security-audit="$HOME/.config/zsh/scripts/arch-security-audit.sh"
 alias disk-health="$HOME/.config/zsh/scripts/disk-health.sh"
 alias mount-media="$HOME/.config/zsh/scripts/mount-media.sh"
 alias tailscale-menu="$HOME/.config/zsh/scripts/tailscale-connect.sh"
+alias backupdot="$HOME/.config/zsh/scripts/backup-dotfiles.sh"
 
 # Webcam
 alias CliCam='mpv av://v4l2:/dev/video0'

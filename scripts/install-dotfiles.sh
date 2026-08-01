@@ -56,6 +56,33 @@ rsync -av \
 "$REPO/.config/" \
 "$HOME/.config/"
 
+# Verificar componentes requeridos por .zshrc y por los scripts de mantenimiento.
+echo ""
+echo "Verificando plugins y utilidades..."
+
+required_paths=(
+    "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    "$HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh"
+    "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    "$HOME/.config/zsh/scripts/lib/omarchy-ui.sh"
+)
+
+missing=0
+for required_path in "${required_paths[@]}"; do
+    if [ ! -f "$required_path" ]; then
+        echo "FALTA: $required_path"
+        missing=1
+    else
+        echo "OK:    $required_path"
+    fi
+done
+
+if [ "$missing" -ne 0 ]; then
+    echo ""
+    echo "Error: faltan componentes requeridos. Instalación cancelada."
+    exit 1
+fi
+
 
 # Permisos
 

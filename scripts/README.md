@@ -7,4 +7,5 @@
 - `arch-security-audit.sh`: auditoría local de solo lectura de actualizaciones, SSH y firewall.
 - `snapper-menu.sh`: crea, lista o elimina instantáneas Snapper manuales.
 - `tailscale-connect.sh`: consulta, conecta o desconecta Tailscale sin ajustes de Proxmox.
+- `backup-dotfiles.sh`: crea un respaldo fechado de las configuraciones principales.
 - `install-dotfiles.sh` y `sync-dotfiles.sh`: instalación y sincronización del repositorio.
