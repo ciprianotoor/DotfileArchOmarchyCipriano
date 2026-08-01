@@ -1,0 +1,17 @@
+@define-color background #08090D;
+@define-color foreground #F5F7FA;
+@define-color surface #11131A;
+@define-color red #E53935;
+@define-color bright-red #FF5252;
+@define-color muted #A9B0BA;
+* { border: none; border-radius: 0; min-height: 0; }
+window#waybar { background: alpha(@background, 0.96); color: @foreground; }
+#workspaces button { padding: 0 8px; color: @muted; background: transparent; }
+#workspaces button.active { color: @bright-red; border-bottom: 2px solid @bright-red; }
+#workspaces button:hover, #workspaces button.urgent { color: @foreground; background: @red; }
+#clock, #cpu, #memory, #network, #pulseaudio, #battery, #tray { padding: 0 10px; }
+#clock { color: @bright-red; font-weight: bold; }
+#battery.warning { color: #FFB4AB; }
+#battery.critical { color: @bright-red; animation: blink 1s steps(2) infinite; }
+tooltip { background: @surface; color: @foreground; border: 1px solid @red; }
+@keyframes blink { to { color: @foreground; } }
