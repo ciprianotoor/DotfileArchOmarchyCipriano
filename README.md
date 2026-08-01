@@ -35,4 +35,32 @@ Tener una copia versionada de mi entorno Linux para poder restaurarlo fácilment
 Clonar el repositorio:
 
 ```bash
-git clone git@github.com:ciprianotoor/DotfileArchOmarchyCipriano.git
+git clone https://github.com/ciprianotoor/DotfileArchOmarchyCipriano.git
+```
+
+### Instalar el tema Mr. Robot en Omarchy
+
+Desde la carpeta donde clonaste el repositorio:
+
+```bash
+mkdir -p ~/.config/omarchy/themes
+
+ln -sfn \
+  "$PWD/.config/omarchy/themes/mr-robot" \
+  ~/.config/omarchy/themes/mr-robot
+
+omarchy theme set mr-robot
+```
+
+Para cambiar entre los fondos incluidos:
+
+```bash
+omarchy theme bg next
+```
+
+La documentación específica del tema está en
+[`.config/omarchy/themes/mr-robot/README.md`](.config/omarchy/themes/mr-robot/README.md).
+
+El tema se enlaza desde este repositorio porque el repositorio completo
+contiene dotfiles, no es un repositorio de tema independiente para
+`omarchy theme install`.
